@@ -2,19 +2,14 @@ package com.devmtn30.TDD_Hexagonal;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 
+@SpringBootTest
 public class ProductServiceTest {
 
+    @Autowired
     private ProductService prodctService;
-    private ProductPort productPort;
-    private ProductRepository productRepository;
-
-    @BeforeEach
-    void setUp() {
-        productRepository = new ProductRepository();
-        productPort = new ProductAdapter(productRepository);
-        prodctService = new ProductService(productPort);
-    }
 
     @Test
     void 상품등록() {
@@ -22,7 +17,7 @@ public class ProductServiceTest {
         prodctService.addProduct(request);
     }
 
-    private AddProductRequest 상품등록요청_생성() {
+    private static AddProductRequest 상품등록요청_생성() {
         final String name = "상품명";
         final int price = 1000;
         DiscountPilicy discountPilicy = DiscountPilicy.NONE;

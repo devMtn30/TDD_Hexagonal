@@ -1,5 +1,8 @@
 package com.devmtn30.TDD_Hexagonal;
 
+import org.springframework.stereotype.Component;
+
+@Component
 class ProductService {
     private final ProductPort productPort;
 
