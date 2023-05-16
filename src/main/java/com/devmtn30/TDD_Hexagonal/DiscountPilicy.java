@@ -1,5 +1,5 @@
 package com.devmtn30.TDD_Hexagonal;
 
-enum DiscountPilicy {
+public enum DiscountPilicy {
     NONE
 }

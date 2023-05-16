@@ -1,5 +1,8 @@
-package com.devmtn30.TDD_Hexagonal;
+package com.devmtn30.TDD_Hexagonal.product;
 
+import com.devmtn30.TDD_Hexagonal.AddProductRequest;
+import com.devmtn30.TDD_Hexagonal.ApiTest;
+import com.devmtn30.TDD_Hexagonal.DiscountPilicy;
 import io.restassured.RestAssured;
 import io.restassured.response.ExtractableResponse;
 import io.restassured.response.Response;
@@ -10,7 +13,7 @@ import org.springframework.http.MediaType;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ProductApiTest extends ApiTest{
+class ProductApiTest extends ApiTest {
 
 
     @Test
