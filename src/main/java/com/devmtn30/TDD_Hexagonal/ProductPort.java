@@ -1,6 +1,6 @@
 package com.devmtn30.TDD_Hexagonal;
 
-interface ProductPort {
+public interface ProductPort {
     void save(Product product);
 
     Product getProduct(long productId);
