@@ -6,35 +6,36 @@ import com.devmtn30.TDD_Hexagonal.ProductPort;
 import com.devmtn30.TDD_Hexagonal.ProductService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.ResponseEntity;
 
+import static com.devmtn30.TDD_Hexagonal.product.ProductSteps.상품등록요청;
+import static com.devmtn30.TDD_Hexagonal.product.ProductSteps.상품등록요청_생성;
 import static org.assertj.core.api.Assertions.assertThat;
 
+
+@SpringBootTest
 public class ProductServiceTest {
 
-
+    @Autowired
     private ProductService productService;
-
-    private ProductPort productPort;
-
-    @BeforeEach
-    void setUp() {
-        productPort = Mockito.mock(ProductPort.class);
-        productService = new ProductService(productPort);
-    }
 
     @Test
     void 상품수정() {
+        productService.addProduct(상품등록요청_생성());
+        final Long productId = 1L;
+        final UpdateProductRequest request = new UpdateProductRequest("상품 수정", 2000, DiscountPilicy.NONE);
 
-        final Long request = 1L;
-        final UpdateProductRequest productId = new UpdateProductRequest("상품 수정", 2000, DiscountPilicy.NONE);
-        final Product product = new Product("상품명", 1000, DiscountPilicy.NONE);
-        Mockito.when(productPort.getProduct(1L)).thenReturn(product);
+        productService.updateProduct(request, productId);
 
-        productService.updateProduct(productId, request);
-
-        assertThat(product.getName()).isEqualTo("상품 수정");
-        assertThat(product.getPrice()).isEqualTo(2000);
+        ResponseEntity<GetProductResponse> response = productService.getProduct(productId);
+        GetProductResponse productResponse = response.getBody();
+        assertThat(productResponse.name()).isEqualTo("상품 수정");
+        assertThat(productResponse.price()).isEqualTo(2000);
     }
 
 }
