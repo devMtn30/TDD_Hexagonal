@@ -37,10 +37,14 @@ public class ProductService {
         return ResponseEntity.ok(response);
     }
 
-    public void updateProduct(UpdateProductRequest request, Long productId) {
+    @PutMapping("/{productId}")
+    @Transactional
+    public ResponseEntity<Void> updateProduct(@RequestBody UpdateProductRequest request, @PathVariable Long productId) {
         Product product = productPort.getProduct(productId);
         product.update(request.name(), request.price(), request.discountPilicy());
 
         productPort.save(product);
+
+        return ResponseEntity.ok().build();
     }
 }

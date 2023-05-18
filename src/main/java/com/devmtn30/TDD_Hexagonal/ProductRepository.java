@@ -8,5 +8,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Repository
+public
 interface ProductRepository extends JpaRepository<Product,Long> {
 }

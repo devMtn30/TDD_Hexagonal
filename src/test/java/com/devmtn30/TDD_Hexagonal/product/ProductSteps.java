@@ -31,4 +31,18 @@ public class ProductSteps {
                 .then().log().all()
                 .extract();
     }
+
+    public static UpdateProductRequest 상품수정요청_생성() {
+       return new UpdateProductRequest("상품 수정", 2000, DiscountPilicy.NONE);
+   }
+
+    public static ExtractableResponse<Response> 상품수정요청(long productId) {
+        return RestAssured.given().log().all()
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .body(상품수정요청_생성())
+                .when()
+                .put("/products/{productId}", productId)
+                .then()
+                .log().all().extract();
+    }
 }
