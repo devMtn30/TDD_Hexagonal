@@ -4,7 +4,6 @@ import com.devmtn30.TDD_Hexagonal.product.GetProductResponse;
 import com.devmtn30.TDD_Hexagonal.product.UpdateProductRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,7 +31,7 @@ public class ProductService {
     public ResponseEntity<GetProductResponse> getProduct(@PathVariable final Long productId) {
         Product product = productPort.getProduct(productId);
 
-        GetProductResponse response = new GetProductResponse(product.getId(), product.getName(), product.getPrice(), product.getDiscountPilicy());
+        GetProductResponse response = new GetProductResponse(product.getId(), product.getName(), product.getPrice(), product.getDiscountPolicy());
 
         return ResponseEntity.ok(response);
     }
