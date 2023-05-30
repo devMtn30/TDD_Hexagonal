@@ -1,8 +1,11 @@
 package com.devmtn30.TDD_Hexagonal.payment;
 
+import org.springframework.stereotype.Repository;
+
 import java.util.HashMap;
 import java.util.Map;
 
+@Repository
 class PaymentRepository {
     private Map<Long, Payment> persistence = new HashMap<>();
     private Long sequence = 0L;

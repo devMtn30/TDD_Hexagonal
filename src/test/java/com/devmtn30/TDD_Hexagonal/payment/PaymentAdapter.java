@@ -3,7 +3,9 @@ package com.devmtn30.TDD_Hexagonal.payment;
 import com.devmtn30.TDD_Hexagonal.DiscountPolicy;
 import com.devmtn30.TDD_Hexagonal.Product;
 import com.devmtn30.TDD_Hexagonal.order.Order;
+import org.springframework.stereotype.Component;
 
+@Component
 class PaymentAdapter implements PaymentPort {
     private final PaymentGateway paymentGateway;
     private final PaymentRepository paymentRepository;

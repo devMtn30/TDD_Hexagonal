@@ -1,7 +1,9 @@
 package com.devmtn30.TDD_Hexagonal.payment;
 
 import com.devmtn30.TDD_Hexagonal.order.Order;
+import org.springframework.stereotype.Component;
 
+@Component
 class PaymentService {
     private final PaymentPort paymentPort;
 
